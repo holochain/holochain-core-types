@@ -3,6 +3,8 @@ name = "holochain_core_types"
 version = "0.0.33"
 authors = ["Holochain Core Dev Team <devcore@holochain.org>"]
 build = "build.rs"
+license = "Apache-2.0"
+description = "Common types for Holochain"
 
 [dependencies]
 arrayref = "=0.3.5"
