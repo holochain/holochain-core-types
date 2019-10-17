@@ -1,12 +1,12 @@
 let
- release-commit = "a0b6a71809a6e1d853330941e516aa20facaa064";
- current = "0.0.32-alpha1";
- previous = "0.0.31-alpha1";
+ release-commit = "943fdef51cba24097618b28caa5c097fcb4d3b0b";
+ current = "0.0.33";
+ previous = "0.0.32-alpha1";
  # tag will ultimately be current version when it hits holonix
  # https://github.com/holochain/holonix/blob/master/release/default.nix#L7
  tag = "v${current}";
- holonix-version = "v0.0.34";
- holonix-sha256 = "0rzwd12p9ni9s87gznshvr9kanw5l7wz3dalcm962hpm1y7zw463";
+ holonix-version = "v0.0.37";
+ holonix-sha256 = "1dhv61x6lvpxvrs6ij44piqswb62hgn0q9fdxv7fnhc1a9grqcr3";
 in
 rec {
 
@@ -56,6 +56,7 @@ rec {
 
    # bump versions in the repo
    version = ''
+hn-release-hook-version-rust
 ct-release-hook-version
 '';
 
@@ -85,65 +86,13 @@ ct-release-hook-publish
    # - {{ changelog }} will inject the changelog as at the target commit
    template = ''
    {{ changelog }}
-
-   # Installation
-
-   This release includes binaries of:
-
-   - the [`hc` development command-line tool](https://github.com/holochain/holochain-rust/blob/${tag}/cli/README.md)
-   - [`holochain` deployment conductor](https://github.com/holochain/holochain-rust/blob/${tag}/conductor/README.md) for different platforms.
-
-   ## Very much recommended install
-
-   The recommended installation process is to follow the [developer quick-start guide](https://developer.holochain.org/start.html).
-
-   The approach in the quick start guide:
-
-   - provides additional supporting tools like rust & node
-   - shows you how to keep up to date with the latest versions of everything
-   - makes minimal changes to your machine overall
-   - is relatively difficult to screw up
-
-   ## Bothersome manual install
-
-   **IMPORTANT:** Manual holochain installations can conflict with the installer.
-
-   Either binary is installed by being placed anywhere on your `$PATH`.
-   This is different for everyone and depends how your machine is configured.
-
-   For `hc` to build and test DNA Rust and NodeJS are both needed.
-
-   ### Which Rust?
-
-   The binaries for this release were built with rust from holonix version ${holonix-version}.
-   WASM needs the `wasm32-unknown-unknown` rust target on your toolchain.
-
-   ### Which NodeJS?
-
-   Node is used to run end to end tests as a client of the holochain.
-   Holochain exposes websockets for node to interact with.
-
-   We recommend nodejs 10+.
-
-   ### Which Binary?
-
-   Download the binaries for your operating system.
-
-   - MacOS: `cli-${tag}-x86_64-apple-darwin.tar.gz`
-   - Linux: `cli-${tag}-x86_64-generic-linux-gnu.tar.gz`
-   - Windows:
-     - Visual Studio build system (default): `cli-${tag}-x86_64-pc-windows-msvc.tar.gz`
-     - mingw build system: `cli-${tag}-x86_64-pc-windows-gnu.tar.gz`
-
-   All binaries are for 64-bit operating systems.
-   32-bit systems are NOT supported.
 '';
 
    # owner of the github repository that release are deployed to
    owner = "holochain";
 
    # repository name on github that release are deployed to
-   repo = "holochain-rust";
+   repo = "holochain-core-types";
 
    # canonical local upstream name as per `git remote -v`
    upstream = "origin";
